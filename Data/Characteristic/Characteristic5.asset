@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae1d53ba5b842ca4e8e2a2e8d73f1bfd, type: 3}
+  m_Name: Characteristic5
+  m_EditorClassIdentifier: 
+  characteristicType: 4
+  CharacteristicId: 4
+  CharacteristicName: "\uC0DD\uBA85\uB825 \uD761\uC218 \uC99D\uAC00"
+  CharacteristicDesc: "\uC0DD\uBA85\uB825 \uD761\uC218 {0}% \uC99D\uAC00"
+  CharacteristicIcon: {fileID: 0}
+  baseDamage: 0.001
+  proijectile: {fileID: 0}
