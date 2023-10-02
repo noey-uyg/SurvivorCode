@@ -1,0 +1,22 @@
+{
+    "Wave": 1,
+    "BossSpawnWave": 1,
+    "kill": 0,
+    "exp": 0,
+    "nextExp": 3,
+    "baseDamage": 10.0,
+    "maxHealth": 100.0,
+    "Armor": 0.0,
+    "CriPer": 0.0,
+    "CriDam": 0.0,
+    "health": -2.0,
+    "level": 5,
+    "ChaGoldAmount": 0.0,
+    "ChaBossDamage": 0.0,
+    "ChaMonsterDamage": 0.0,
+    "ChaMoveSpeed": 0.0,
+    "ChaHPDrain": 0.0,
+    "gold": 352,
+    "bosspoint": 0,
+    "traitspoints": 9
+}

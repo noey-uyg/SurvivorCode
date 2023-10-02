@@ -87,7 +87,7 @@ public class Item : MonoBehaviour
                         }
                         else
                         {
-                            float baseDamage = data.baseDamage + (GameManager.instance.baseDamage * 0.1f);
+                            float baseDamage = data.baseDamage;
                             float nextDamage = baseDamage;
                             int nextCount = 0;
 

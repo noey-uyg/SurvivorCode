@@ -28,10 +28,10 @@ public class StatButton : MonoBehaviour
 
     public void OnClick()
     {
-        if (NextGoldCost > GameManager.instance.gold)
+        if (NextGoldCost > GameManager.instance.playerData.gold)
             return;
 
-        GameManager.instance.gold -= NextGoldCost;
+        GameManager.instance.playerData.gold -= NextGoldCost;
 
         temp = PrevGoldCost + NextGoldCost;
         PrevGoldCost = NextGoldCost;

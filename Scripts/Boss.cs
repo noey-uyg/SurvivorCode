@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Boss : MonoBehaviour
 {
     public float speed;
     public float health;
@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
         speed = data.speed;
         maxHealth = data.health + GameManager.instance.playerData.Wave;
         health = data.health + GameManager.instance.playerData.Wave;
-        damage = GameManager.instance.playerData.Wave;
+        damage = data.damage + GameManager.instance.playerData.Wave;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -83,8 +83,7 @@ public class Enemy : MonoBehaviour
         //피격처리
         if (!collision.CompareTag("Bullet") || !isLive)
             return;
-
-        hitDamage = (collision.GetComponent<Bullet>().damage + GameManager.instance.playerData.baseDamage) + ((collision.GetComponent<Bullet>().damage + GameManager.instance.playerData.baseDamage) * GameManager.instance.playerData.ChaMonsterDamage);
+        hitDamage = (collision.GetComponent<Bullet>().damage + GameManager.instance.playerData.baseDamage) + ((collision.GetComponent<Bullet>().damage + GameManager.instance.playerData.baseDamage) * GameManager.instance.playerData.ChaBossDamage);
 
         health -= hitDamage;
 
@@ -104,8 +103,10 @@ public class Enemy : MonoBehaviour
             rigid.simulated = false;
             spriter.sortingOrder -= 1;
             anim.SetBool("Dead", true);
+            GameManager.instance.playerData.kill++;
             GameManager.instance.GetExp();
             GameManager.instance.GetGold();
+            GameManager.instance.GetBossPoint();
         }
     }
 

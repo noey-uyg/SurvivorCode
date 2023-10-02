@@ -35,45 +35,45 @@ public class Characteristic : MonoBehaviour
 
     public void OnClick()
     {
-        if (GameManager.instance.traitspoints < 1)
+        if (GameManager.instance.playerData.traitspoints < 1)
             return;
 
         switch (data.characteristicType)
         {
             case CharacteristicData.CharacteristicType.Gold:
-                GameManager.instance.ChaGoldAmount += data.baseDamage;
+                GameManager.instance.playerData.ChaGoldAmount += data.baseDamage;
                 level++;
                 textLevel.text = "Lv." + level;
-                textNow.text = string.Format("{0:F1}%",GameManager.instance.ChaGoldAmount * 100);
-                GameManager.instance.traitspoints--;
+                textNow.text = string.Format("{0:F1}%",GameManager.instance.playerData.ChaGoldAmount * 100);
+                GameManager.instance.playerData.traitspoints--;
                 break;
             case CharacteristicData.CharacteristicType.BossDamage:
-                GameManager.instance.ChaBossDamage += data.baseDamage;
+                GameManager.instance.playerData.ChaBossDamage += data.baseDamage;
                 level++;
                 textLevel.text = "Lv." + level;
-                textNow.text = string.Format("{0:F1}%", GameManager.instance.ChaBossDamage * 100);
-                GameManager.instance.traitspoints--;
+                textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaBossDamage * 100);
+                GameManager.instance.playerData.traitspoints--;
                 break;
             case CharacteristicData.CharacteristicType.MonsterDamage:
-                GameManager.instance.ChaMonsterDamage += data.baseDamage;
+                GameManager.instance.playerData.ChaMonsterDamage += data.baseDamage;
                 level++;
                 textLevel.text = "Lv." + level;
-                textNow.text = string.Format("{0:F1}%", GameManager.instance.ChaMonsterDamage * 100);
-                GameManager.instance.traitspoints--;
+                textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaMonsterDamage * 100);
+                GameManager.instance.playerData.traitspoints--;
                 break;
             case CharacteristicData.CharacteristicType.shoe:
-                GameManager.instance.ChaMoveSpeed += data.baseDamage;
+                GameManager.instance.playerData.ChaMoveSpeed += data.baseDamage;
                 level++;
                 textLevel.text = "Lv." + level;
-                textNow.text = string.Format("{0:F1}%", GameManager.instance.ChaMoveSpeed * 100);
-                GameManager.instance.traitspoints--;
+                textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaMoveSpeed * 100);
+                GameManager.instance.playerData.traitspoints--;
                 break;
             case CharacteristicData.CharacteristicType.HPDrain:
-                GameManager.instance.ChaHPDrain += data.baseDamage;
+                GameManager.instance.playerData.ChaHPDrain += data.baseDamage;
                 level++;
                 textLevel.text = "Lv." + level;
-                textNow.text = string.Format("{0:F1}%", GameManager.instance.ChaHPDrain * 100);
-                GameManager.instance.traitspoints--;
+                textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaHPDrain * 100);
+                GameManager.instance.playerData.traitspoints--;
                 break;
 
         }

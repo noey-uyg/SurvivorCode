@@ -36,19 +36,19 @@ public class Stat : MonoBehaviour
         switch (data.statType)
         {
             case StatData.StatType.Power:
-                textName.text = string.Format(data.statName, GameManager.instance.baseDamage);
+                textName.text = string.Format(data.statName, GameManager.instance.playerData.baseDamage);
                 break;
             case StatData.StatType.HP:
-                textName.text = string.Format(data.statName, GameManager.instance.maxHealth);
+                textName.text = string.Format(data.statName, GameManager.instance.playerData.maxHealth);
                 break;
             case StatData.StatType.Armor:
-                textName.text = string.Format(data.statName, GameManager.instance.Armor);
+                textName.text = string.Format(data.statName, GameManager.instance.playerData.Armor);
                 break;
             case StatData.StatType.CP:
-                textName.text = string.Format(data.statName, GameManager.instance.CriPer);
+                textName.text = string.Format(data.statName, GameManager.instance.playerData.CriPer);
                 break;
             case StatData.StatType.CD:
-                textName.text = string.Format(data.statName, GameManager.instance.CriDam);
+                textName.text = string.Format(data.statName, GameManager.instance.playerData.CriDam);
                 break;
         }
     }
@@ -58,38 +58,39 @@ public class Stat : MonoBehaviour
         switch (data.statType)
         {
             case StatData.StatType.Power:
-                GameManager.instance.baseDamage += data.baseDamage;
+                GameManager.instance.playerData.baseDamage += data.baseDamage;
                 level++;
                 textLevel.text = "Lv." + level;
-                textName.text = string.Format(data.statName, GameManager.instance.baseDamage);
+                textName.text = string.Format(data.statName, GameManager.instance.playerData.baseDamage);
                 textDesc.text = string.Format(data.statDesc, data.baseDamage);
                 break;
             case StatData.StatType.HP:
-                GameManager.instance.maxHealth += data.baseDamage;
+                GameManager.instance.playerData.maxHealth += data.baseDamage;
+                GameManager.instance.playerData.health += data.baseDamage;
                 level++;
                 textLevel.text = "Lv." + level;
-                textName.text = string.Format(data.statName, GameManager.instance.maxHealth);
+                textName.text = string.Format(data.statName, GameManager.instance.playerData.maxHealth);
                 textDesc.text = string.Format(data.statDesc, data.baseDamage);
                 break;
             case StatData.StatType.Armor:
-                GameManager.instance.Armor += data.baseDamage;
+                GameManager.instance.playerData.Armor += data.baseDamage;
                 level++;
                 textLevel.text = "Lv." + level;
-                textName.text = string.Format(data.statName, GameManager.instance.Armor);
+                textName.text = string.Format(data.statName, GameManager.instance.playerData.Armor);
                 textDesc.text = string.Format(data.statDesc, data.baseDamage);
                 break;
             case StatData.StatType.CP:
-                GameManager.instance.CriPer += data.baseDamage;
+                GameManager.instance.playerData.CriPer += data.baseDamage;
                 level++;
                 textLevel.text = "Lv." + level;
-                textName.text = string.Format(data.statName, GameManager.instance.CriPer);
+                textName.text = string.Format(data.statName, GameManager.instance.playerData.CriPer);
                 textDesc.text = string.Format(data.statDesc, data.baseDamage);
                 break;
             case StatData.StatType.CD:
-                GameManager.instance.CriDam += data.baseDamage;
+                GameManager.instance.playerData.CriDam += data.baseDamage;
                 level++;
                 textLevel.text = "Lv." + level;
-                textName.text = string.Format(data.statName, GameManager.instance.CriDam);
+                textName.text = string.Format(data.statName, GameManager.instance.playerData.CriDam);
                 textDesc.text = string.Format(data.statDesc, data.baseDamage);
                 break;
         }

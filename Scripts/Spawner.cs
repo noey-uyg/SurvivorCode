@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
     public Transform[] spawnpoint;
     public SpawnData[] spawnData;
 
-    int level;
+    public int level;
     float timer;
     float summonCycle;
 
@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour
             return;
 
         timer += Time.deltaTime;
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), spawnData.Length - 1);
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), spawnData.Length - 2);
 
 
         //소환주기
@@ -38,6 +38,18 @@ public class Spawner : MonoBehaviour
             timer = 0;
             Spawn();
         }
+        if (GameManager.instance.playerData.BossSpawnWave % 10 == 0)
+        {
+            BossSpawn();
+            GameManager.instance.playerData.Wave += 1;
+            GameManager.instance.playerData.BossSpawnWave = 1;
+        }
+    }
+    void BossSpawn()
+    {
+        GameObject enemy = GameManager.instance.pool.Get(4);
+        enemy.transform.position = spawnpoint[Random.Range(1, spawnpoint.Length)].position;
+        enemy.GetComponent<Boss>().Init(spawnData[2]);
     }
 
     void Spawn()
@@ -46,6 +58,8 @@ public class Spawner : MonoBehaviour
         enemy.transform.position = spawnpoint[Random.Range(1, spawnpoint.Length)].position;
         enemy.GetComponent<Enemy>().Init(spawnData[level]);
     }
+
+
 }
 
 [System.Serializable]
@@ -55,4 +69,5 @@ public class SpawnData
     public float spawnTime;
     public int health;
     public float speed;
+    public int damage;
 }

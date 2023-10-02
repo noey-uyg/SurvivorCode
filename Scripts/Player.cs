@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public Vector2 inputVec;
     public Scanner scanner;
 
+    public float hitdamage = 0;
     Rigidbody2D rigid;
     SpriteRenderer spriter;
     Animator anim;
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
             return;
 
         //이동 정규화
-        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+        Vector2 nextVec = inputVec.normalized * (speed + (speed*GameManager.instance.playerData.ChaMoveSpeed)) * Time.fixedDeltaTime;
         //이동
         rigid.MovePosition(rigid.position + nextVec);
 
@@ -57,9 +58,24 @@ public class Player : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
 
-        GameManager.instance.health -= Time.deltaTime * 10f;
+        if (collision.gameObject.GetComponent<Enemy>())
+        {
+            hitdamage = collision.gameObject.GetComponent<Enemy>().damage - GameManager.instance.playerData.Armor;
 
-        if(GameManager.instance.health < 0)
+            if (hitdamage > 0)
+                GameManager.instance.playerData.health -= hitdamage;
+        }
+        else if (collision.gameObject.GetComponent<Boss>())
+        {
+            hitdamage = collision.gameObject.GetComponent<Boss>().damage - GameManager.instance.playerData.Armor;
+
+            if (hitdamage > 0)
+                GameManager.instance.playerData.health -= hitdamage;
+        }
+
+
+
+        if (GameManager.instance.playerData.health < 0)
         {
             for(int index = 2; index < transform.childCount; index++)
             {

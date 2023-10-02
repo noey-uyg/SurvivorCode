@@ -14322,6 +14322,7 @@ MonoBehaviour:
   - {fileID: 7770450653800658492, guid: 179eebcdeca739f4e951ccfed23790dd, type: 3}
   - {fileID: 461511286835834050, guid: 733ad12e3ad74d742919919d0d74db83, type: 3}
   - {fileID: 4576827470289072581, guid: cb2e6bde23d27c74eacbdc94b70f28da, type: 3}
+  - {fileID: 8651664581131209939, guid: d58d88759d0ccf541bb35d6f027f43c2, type: 3}
 --- !u!4 &1287857364
 Transform:
   m_ObjectHideFlags: 0
@@ -14607,10 +14608,18 @@ MonoBehaviour:
     spawnTime: 0.7
     health: 10
     speed: 0.5
+    damage: 0
   - spriteType: 1
     spawnTime: 1.5
     health: 15
     speed: 0.6
+    damage: 0
+  - spriteType: 0
+    spawnTime: 0
+    health: 100
+    speed: 0.4
+    damage: 50
+  level: 0
 --- !u!1 &1347701970
 GameObject:
   m_ObjectHideFlags: 0
@@ -16753,6 +16762,7 @@ MonoBehaviour:
   speed: 1
   inputVec: {x: 0, y: 0}
   scanner: {fileID: 0}
+  hitdamage: 0
 --- !u!114 &1556705853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17541,6 +17551,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0fb93a1e8ee2c4e877725c9ec0b654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData:
+    Wave: 1
+    BossSpawnWave: 1
+    baseDamage: 10
+    maxHealth: 100
+    Armor: 0
+    CriPer: 0
+    CriDam: 0
+    health: 0
+    level: 0
+    kill: 0
+    exp: 0
+    nextExp: 3
+    ChaGoldAmount: 0
+    ChaBossDamage: 0
+    ChaMonsterDamage: 0
+    ChaMoveSpeed: 0
+    ChaHPDrain: 0
+    gold: 0
+    bosspoint: 0
+    traitspoints: 0
   pool: {fileID: 1287857363}
   player: {fileID: 1556705852}
   uiResult: {fileID: 1073696108}
@@ -17548,25 +17579,6 @@ MonoBehaviour:
   isLive: 0
   gameTime: 0
   maxGameTime: 30
-  Wave: 1
-  baseDamage: 10
-  maxHealth: 100
-  Armor: 0
-  CriPer: 0
-  CriDam: 0
-  health: 0
-  level: 0
-  kill: 0
-  exp: 0
-  nextExp: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
-  ChaGoldAmount: 0
-  ChaBossDamage: 0
-  ChaMonsterDamage: 0
-  ChaMoveSpeed: 0
-  ChaHPDrain: 0
-  gold: 0
-  bosspoint: 0
-  traitspoints: 0
 --- !u!4 &1671877398
 Transform:
   m_ObjectHideFlags: 0

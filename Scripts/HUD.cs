@@ -21,15 +21,15 @@ public class HUD : MonoBehaviour
         switch (type)
         {
             case InfoType.Exp:
-                float curExp = GameManager.instance.exp;
-                float maxExp = GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)];
+                float curExp = GameManager.instance.playerData.exp;
+                float maxExp = GameManager.instance.playerData.nextExp;
                 mySlider.value = curExp / maxExp;
                 break;
             case InfoType.Level:
-                myText.text = string.Format("Lv.{0:F0}",GameManager.instance.level);
+                myText.text = string.Format("Lv.{0:F0}",GameManager.instance.playerData.level);
                 break;
             case InfoType.Wave:
-                myText.text = string.Format("{0:F0}wave", GameManager.instance.Wave);
+                myText.text = string.Format("{0:F0}wave", GameManager.instance.playerData.Wave);
                 break;
             case InfoType.Time:
                 float remainTime = GameManager.instance.maxGameTime - GameManager.instance.gameTime;
@@ -38,18 +38,18 @@ public class HUD : MonoBehaviour
                 myText.text = string.Format("{0:D2}:{1:D2}", min, sec);
                 break;
             case InfoType.Health:
-                float curHealth = GameManager.instance.health;
-                float maxHealth = GameManager.instance.maxHealth;
+                float curHealth = GameManager.instance.playerData.health;
+                float maxHealth = GameManager.instance.playerData.maxHealth;
                 mySlider.value = curHealth / maxHealth;
                 break;
             case InfoType.gold:
-                myText.text = string.Format("골드 : {0:F0}", GameManager.instance.gold);
+                myText.text = string.Format("골드 : {0:F0}", GameManager.instance.playerData.gold);
                 break;
             case InfoType.bosspoint:
-                myText.text = string.Format("보스재화 : {0:F0}", GameManager.instance.bosspoint);
+                myText.text = string.Format("보스재화 : {0:F0}", GameManager.instance.playerData.bosspoint);
                 break;
             case InfoType.traitspoints:
-                myText.text = string.Format("특성포인트 : {0:F0}", GameManager.instance.traitspoints);
+                myText.text = string.Format("특성포인트 : {0:F0}", GameManager.instance.playerData.traitspoints);
                 break;
         }
     }

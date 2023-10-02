@@ -28,17 +28,17 @@ public class Buy : MonoBehaviour
 
     private void LateUpdate()
     {
-        bosscoinCost = (12+GameManager.instance.Wave)* GameManager.instance.Wave;
-        traitspointsCost = (31 + GameManager.instance.Wave) * GameManager.instance.Wave;
+        bosscoinCost = (12+GameManager.instance.playerData.Wave)* GameManager.instance.playerData.Wave;
+        traitspointsCost = (31 + GameManager.instance.playerData.Wave) * GameManager.instance.playerData.Wave;
 
         switch (buttonType)
         {
             case ButtonType.bosscoin:
-                textCount.text = string.Format("{0}",3 * GameManager.instance.Wave);
+                textCount.text = string.Format("{0}",3 * GameManager.instance.playerData.Wave);
                 textCost.text = string.Format("°ñµå {0}¼Ò¸ð", bosscoinCost);
                 break;
             case ButtonType.traitspoints:
-                textCount.text = string.Format("{0}", 1 * GameManager.instance.Wave + GameManager.instance.level);
+                textCount.text = string.Format("{0}", 1 * GameManager.instance.playerData.Wave + GameManager.instance.playerData.level);
                 textCost.text = string.Format("°ñµå {0}¼Ò¸ð", traitspointsCost);
                 break;
             case ButtonType.skill:
@@ -52,27 +52,27 @@ public class Buy : MonoBehaviour
         switch (buttonType)
         {
             case ButtonType.bosscoin:
-                if (bosscoinCost <= GameManager.instance.gold)
+                if (bosscoinCost <= GameManager.instance.playerData.gold)
                 {
-                    GameManager.instance.bosspoint += (3 * GameManager.instance.Wave);
-                    GameManager.instance.gold -= bosscoinCost;
+                    GameManager.instance.playerData.bosspoint += (3 * GameManager.instance.playerData.Wave);
+                    GameManager.instance.playerData.gold -= bosscoinCost;
                 }
                 
                 break;
             case ButtonType.traitspoints:
-                if(traitspointsCost<= GameManager.instance.gold)
+                if(traitspointsCost<= GameManager.instance.playerData.gold)
                 {
-                    GameManager.instance.traitspoints += (1 * GameManager.instance.Wave + GameManager.instance.level);
-                    GameManager.instance.gold -= traitspointsCost;
+                    GameManager.instance.playerData.traitspoints += (1 * GameManager.instance.playerData.Wave + GameManager.instance.playerData.level);
+                    GameManager.instance.playerData.gold -= traitspointsCost;
                 }
                 
                 break;
             case ButtonType.skill:
-                if (NextSkillCost <= GameManager.instance.bosspoint)
+                if (NextSkillCost <= GameManager.instance.playerData.bosspoint)
                 {
                     int ran = Random.Range(0, item.Length);
                     item[ran].count += 1;
-                    GameManager.instance.bosspoint -= NextSkillCost;
+                    GameManager.instance.playerData.bosspoint -= NextSkillCost;
 
                     temp = PrevSkillCost + NextSkillCost;
                     PrevSkillCost = NextSkillCost;
