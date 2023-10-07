@@ -33,8 +33,9 @@ public class Spawner : MonoBehaviour
 
 
         //소환주기
-        if (timer > spawnData[level].spawnTime)
+        if (timer > spawnData[level].spawnTime - (GameManager.instance.playerData.Wave * 0.0001))
         {
+            //Debug.Log(spawnData[level].spawnTime - (GameManager.instance.playerData.Wave * 0.0001));
             timer = 0;
             Spawn();
         }

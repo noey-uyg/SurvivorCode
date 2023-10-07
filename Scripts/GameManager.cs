@@ -19,35 +19,8 @@ public class GameManager : MonoBehaviour
     public bool isLive;
     public float gameTime;
     public float maxGameTime= 3 * 10f;
-
-    //public int Wave;
-    //public int BossSpawnWave;
-
-    //[Header("#Player Stat")]
-    //public float baseDamage;
-    //public float maxHealth;
-    //public float Armor;
-    //public float CriPer;
-    //public float CriDam;
-
-    //[Header("#Player Info")]
-    //public float health;
-    //public int level;
-    //public int kill;
-    //public int exp;
-    //public int nextExp;
-
-    //[Header("#Player Characteristic")]
-    //public float ChaGoldAmount;
-    //public float ChaBossDamage ;
-    //public float ChaMonsterDamage;
-    //public float ChaMoveSpeed;
-    //public float ChaHPDrain;
-
-    //[Header("#Player Characteristic")]
-    //public int gold;
-    //public int bosspoint;
-    //public int traitspoints;
+    public float saveTime;
+    public float maxSaveTime = 6 * 10f;
 
     private void Awake()
     {
@@ -56,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        playerData.level = 1;
         SavePlayerDataToJson();
         StartCoroutine(GameOverRoutine());
     }
@@ -76,7 +50,6 @@ public class GameManager : MonoBehaviour
         LoadPlayerDataToJson();
         playerData.health = playerData.maxHealth;
         isLive = true;
-        playerData.level = 1;
     }
 
     public void GameRetry()
@@ -91,11 +64,19 @@ public class GameManager : MonoBehaviour
             return;
 
         gameTime += Time.deltaTime;
+        saveTime += Time.deltaTime;
+
         if(gameTime > maxGameTime)
         {
             gameTime = 0f;
             playerData.Wave += 1;
             playerData.BossSpawnWave += 1;
+        }
+        
+        if(saveTime > maxSaveTime)
+        {
+            saveTime = 0f;
+            SavePlayerDataToJson();
         }
     }
 
@@ -164,6 +145,7 @@ public class GameManager : MonoBehaviour
         playerData = JsonUtility.FromJson<PlayerData>(jsonData);
     }
 }
+
 [System.Serializable]
 public class PlayerData
 {

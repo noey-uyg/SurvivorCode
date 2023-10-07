@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+
 public class Item : MonoBehaviour
 {
     public ItemData data;
-    public int level;
     public Weapon weapon;
-    public Gear gear;
 
     Image icon;
     Text textLevel;
@@ -20,23 +20,37 @@ public class Item : MonoBehaviour
         icon = GetComponentsInChildren<Image>()[1];
         icon.sprite = data.itemIcon;
 
+
         Text[] texts = GetComponentsInChildren<Text>();
         textLevel = texts[0];
         textName = texts[1];
         textDesc = texts[2];
         textCount = texts[3];
         textName.text = data.itemName;
+    }
 
-        if (data.itemType == ItemData.ItemType.Range)
+    // Start is called before the first frame update
+    void Start()
+    {
+        GameObject newWeapon = new GameObject();
+        weapon = newWeapon.AddComponent<Weapon>();
+
+        for (int i = 0; i < data.level; i++)
         {
-            GameObject newWeapon = new GameObject();
-            weapon = newWeapon.AddComponent<Weapon>();
+            if (i == 0)
+            {
+                weapon.Init(data);
+            }
+            else
+            {
+                float baseDamage = data.baseDamage;
+                float nextDamage = baseDamage;
+                int nextCount = 0;
 
-            weapon.Init(data);
-
-            level++;
-            textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]);
-            textLevel.text = "Lv." + level;
+                nextDamage += baseDamage * data.damages[i];
+                nextCount += data.counts[i];
+                weapon.LevelUp(nextDamage, nextCount);
+            }
         }
     }
 
@@ -47,16 +61,14 @@ public class Item : MonoBehaviour
 
     private void OnEnable()
     {
-        textLevel.text = "Lv." + level;
+        textLevel.text = "Lv." + data.level;
         switch(data.itemType){
             case ItemData.ItemType.Melee:
             case ItemData.ItemType.Range:
             case ItemData.ItemType.lightning:
-                textDesc.text = string.Format(data.itemDesc,data.damages[level] * 100, data.counts[level]);
+                textDesc.text = string.Format(data.itemDesc,data.damages[data.level] * 100, data.counts[data.level]);
                 break;
-            case ItemData.ItemType.Shoe:
-                textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100);
-                break;
+
             default:
                 textDesc.text = string.Format(data.itemDesc);
                 break;
@@ -66,23 +78,18 @@ public class Item : MonoBehaviour
 
     public void OnClick()
     {
-        if (data.count >= 5)
+        if (data.count >= 5 && data.level < data.damages.Length-1)
         {
             int ran = Random.Range(0, 1000);
-            Debug.Log(ran);
-            if (ran < 10)
+            if (ran < 1000)
             {
-                
                 switch (data.itemType)
                 {
                     case ItemData.ItemType.Melee:
                     case ItemData.ItemType.Range:
                     case ItemData.ItemType.lightning:
-                        if (level == 0)
+                        if (data.level == 0)
                         {
-                            GameObject newWeapon = new GameObject();
-                            weapon = newWeapon.AddComponent<Weapon>();
-
                             weapon.Init(data);
                         }
                         else
@@ -91,32 +98,23 @@ public class Item : MonoBehaviour
                             float nextDamage = baseDamage;
                             int nextCount = 0;
 
-                            nextDamage += baseDamage * data.damages[level];
-                            nextCount += data.counts[level];
+                            nextDamage += baseDamage * data.damages[data.level];
+                            nextCount += data.counts[data.level];
                             weapon.LevelUp(nextDamage, nextCount);
                         }
-                        level++;
-                        textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]);
-                        textLevel.text = "Lv." + level;
+                        data.level++;
+                        textDesc.text = string.Format(data.itemDesc, data.damages[data.level] * 100, data.counts[data.level]);
+                        textLevel.text = "Lv." + data.level;
 
                         break;
                 }
             }
             data.count -= 5;
         }
-        
-
-        if(level == data.damages.Length)
-        {
-            GetComponent<Button>().interactable = false;
-        }
+       
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()

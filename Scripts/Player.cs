@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public Scanner scanner;
 
     public float hitdamage = 0;
+    public VariableJoystick joy;
     Rigidbody2D rigid;
     SpriteRenderer spriter;
     Animator anim;
@@ -29,10 +30,13 @@ public class Player : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
 
+        float x = joy.Horizontal;
+        float y = joy.Vertical;
         //이동 정규화
-        Vector2 nextVec = inputVec.normalized * (speed + (speed*GameManager.instance.playerData.ChaMoveSpeed)) * Time.fixedDeltaTime;
+        //Vector2 nextVec = inputVec.normalized * (speed + (speed*GameManager.instance.playerData.ChaMoveSpeed)) * Time.fixedDeltaTime;
+        inputVec = new Vector3(x, y, 0).normalized * (speed + (speed * GameManager.instance.playerData.ChaMoveSpeed)) * Time.fixedDeltaTime;
         //이동
-        rigid.MovePosition(rigid.position + nextVec);
+        rigid.MovePosition(rigid.position + inputVec);
 
     }
 

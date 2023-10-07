@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     public float maxHealth;
     public float knockbackPower;
     public float damage;
+    public float spawnTime;
+
     float hitDamage = 0;
     public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target;
