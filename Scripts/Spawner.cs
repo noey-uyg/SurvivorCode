@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     public int level;
     float timer;
     float summonCycle;
-
+    
     private void Awake()
     {
         spawnpoint = GetComponentsInChildren<Transform>();

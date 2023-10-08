@@ -11,7 +11,7 @@ public class PurchaseClick: MonoBehaviour
     Item[] items;
     Characteristic[] characteristics;
     Stat[] stats;
-
+    
     int ClickCount = 0;
 
     private void Awake()
@@ -55,7 +55,7 @@ public class PurchaseClick: MonoBehaviour
 
     void Next()
     {
-        
+        SoundManager.instance.PlaySfx(SoundManager.Sfx.Click);
         switch (buttonType)
         {
             
@@ -85,7 +85,6 @@ public class PurchaseClick: MonoBehaviour
                 break;
 
         }
-        
     }
     // Start is called before the first frame update
     void Start()

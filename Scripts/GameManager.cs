@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
         uiResult.SetActive(true);
 
         Stop();
+        SoundManager.instance.PlayBgm(false);
+        SoundManager.instance.PlaySfx(SoundManager.Sfx.GameOver);
     }
 
     private void Start()
@@ -50,12 +52,15 @@ public class GameManager : MonoBehaviour
         LoadPlayerDataToJson();
         playerData.health = playerData.maxHealth;
         isLive = true;
+        SoundManager.instance.PlayBgm(true);
     }
 
     public void GameRetry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Resume();
+        SoundManager.instance.PlayBgm(false);
+        SoundManager.instance.PlaySfx(SoundManager.Sfx.Click);
     }
 
     private void Update()

@@ -78,10 +78,11 @@ public class Item : MonoBehaviour
 
     public void OnClick()
     {
+
         if (data.count >= 5 && data.level < data.damages.Length-1)
         {
             int ran = Random.Range(0, 1000);
-            if (ran < 1000)
+            if (ran < 10)
             {
                 switch (data.itemType)
                 {
@@ -111,7 +112,7 @@ public class Item : MonoBehaviour
             }
             data.count -= 5;
         }
-       
+        SoundManager.instance.PlaySfx(SoundManager.Sfx.Click);
     }
 
 

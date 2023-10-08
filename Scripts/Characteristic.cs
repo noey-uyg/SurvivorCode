@@ -35,6 +35,8 @@ public class Characteristic : MonoBehaviour
 
     public void OnClick()
     {
+        SoundManager.instance.PlaySfx(SoundManager.Sfx.Click);
+
         if (GameManager.instance.playerData.traitspoints < 1)
             return;
 
@@ -77,6 +79,7 @@ public class Characteristic : MonoBehaviour
                 break;
 
         }
+        
 
     }
 

@@ -28,6 +28,7 @@ public class StatButton : MonoBehaviour
 
     public void OnClick()
     {
+        SoundManager.instance.PlaySfx(SoundManager.Sfx.Click);
         if (NextGoldCost > GameManager.instance.playerData.gold)
             return;
 
@@ -40,6 +41,7 @@ public class StatButton : MonoBehaviour
         
         int ran = Random.Range(0, StatData.Length);
         StatData[ran].GetComponent<Stat>().ClickUpdate();
+
     }
 
 }

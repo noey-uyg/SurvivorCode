@@ -108,6 +108,8 @@ public class Enemy : MonoBehaviour
             anim.SetBool("Dead", true);
             GameManager.instance.GetExp();
             GameManager.instance.GetGold();
+
+            SoundManager.instance.PlaySfx(SoundManager.Sfx.EnemyKill);
         }
     }
 

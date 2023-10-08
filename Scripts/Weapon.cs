@@ -140,6 +140,7 @@ public class Weapon : MonoBehaviour
 
     void Fire()
     {
+
         if (!player.scanner.nearestTarget)
             return;
 
@@ -151,6 +152,9 @@ public class Weapon : MonoBehaviour
         bullet.position = transform.position;
         bullet.rotation = Quaternion.FromToRotation(Vector3.right, dir);
         bullet.GetComponent<Bullet>().Init(damage, count, dir);
+
+        if(GameManager.instance.isLive)
+            SoundManager.instance.PlaySfx(SoundManager.Sfx.PlayerAttack);
     }
 
     void Strike()

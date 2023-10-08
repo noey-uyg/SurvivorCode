@@ -81,5 +81,6 @@ public class Buy : MonoBehaviour
                 
                 break;
         }
+        SoundManager.instance.PlaySfx(SoundManager.Sfx.Click);
     }
 }
