@@ -17,5 +17,5 @@ MonoBehaviour:
   CharacteristicName: "\uACE8\uB4DC \uD68D\uB4DD\uB7C9 \uC99D\uAC00"
   CharacteristicDesc: "\uACE8\uB4DC \uD68D\uB4DD\uB7C9 {0}% \uC99D\uAC00"
   CharacteristicIcon: {fileID: 0}
-  baseDamage: 0.001
+  baseDamage: 0.01
   proijectile: {fileID: 0}

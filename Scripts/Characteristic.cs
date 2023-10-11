@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Characteristic : MonoBehaviour
 {
     public CharacteristicData data;
-    public int level;
 
     Image icon;
     Text textLevel;
@@ -25,13 +24,34 @@ public class Characteristic : MonoBehaviour
         textNow = texts[3];
         textName.text = data.CharacteristicName;
     }
-    private void OnEnable()
+    void Start()
     {
-        textLevel.text = "Lv." + level;
         textDesc.text = string.Format(data.CharacteristicDesc, data.baseDamage * 100);
-        
-    }
 
+        switch (data.characteristicType)
+        {
+            case CharacteristicData.CharacteristicType.Gold:
+                textLevel.text = "Lv." + GameManager.instance.playerData.ChaGoldAmountLevel;
+                textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaGoldAmount * 100);
+                break;
+            case CharacteristicData.CharacteristicType.BossDamage:
+                textLevel.text = "Lv." + GameManager.instance.playerData.ChaBossDamageLevel;
+                textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaBossDamage * 100);
+                break;
+            case CharacteristicData.CharacteristicType.MonsterDamage:
+                textLevel.text = "Lv." + GameManager.instance.playerData.ChaMonsterDamageLevel;
+                textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaMonsterDamage * 100);
+                break;
+            case CharacteristicData.CharacteristicType.shoe:
+                textLevel.text = "Lv." + GameManager.instance.playerData.ChaMoveSpeedLevel;
+                textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaMoveSpeed * 100);
+                break;
+            case CharacteristicData.CharacteristicType.HPDrain:
+                textLevel.text = "Lv." + GameManager.instance.playerData.ChaHPDrainLevel;
+                textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaHPDrain * 100);
+                break;
+        }
+    }
 
     public void OnClick()
     {
@@ -44,36 +64,36 @@ public class Characteristic : MonoBehaviour
         {
             case CharacteristicData.CharacteristicType.Gold:
                 GameManager.instance.playerData.ChaGoldAmount += data.baseDamage;
-                level++;
-                textLevel.text = "Lv." + level;
+                GameManager.instance.playerData.ChaGoldAmountLevel++;
+                textLevel.text = "Lv." + GameManager.instance.playerData.ChaGoldAmountLevel;
                 textNow.text = string.Format("{0:F1}%",GameManager.instance.playerData.ChaGoldAmount * 100);
                 GameManager.instance.playerData.traitspoints--;
                 break;
             case CharacteristicData.CharacteristicType.BossDamage:
                 GameManager.instance.playerData.ChaBossDamage += data.baseDamage;
-                level++;
-                textLevel.text = "Lv." + level;
+                GameManager.instance.playerData.ChaBossDamageLevel++;
+                textLevel.text = "Lv." + GameManager.instance.playerData.ChaBossDamageLevel;
                 textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaBossDamage * 100);
                 GameManager.instance.playerData.traitspoints--;
                 break;
             case CharacteristicData.CharacteristicType.MonsterDamage:
                 GameManager.instance.playerData.ChaMonsterDamage += data.baseDamage;
-                level++;
-                textLevel.text = "Lv." + level;
+                GameManager.instance.playerData.ChaMonsterDamageLevel++;
+                textLevel.text = "Lv." + GameManager.instance.playerData.ChaMonsterDamageLevel;
                 textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaMonsterDamage * 100);
                 GameManager.instance.playerData.traitspoints--;
                 break;
             case CharacteristicData.CharacteristicType.shoe:
                 GameManager.instance.playerData.ChaMoveSpeed += data.baseDamage;
-                level++;
-                textLevel.text = "Lv." + level;
+                GameManager.instance.playerData.ChaMoveSpeedLevel++;
+                textLevel.text = "Lv." + GameManager.instance.playerData.ChaMoveSpeedLevel;
                 textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaMoveSpeed * 100);
                 GameManager.instance.playerData.traitspoints--;
                 break;
             case CharacteristicData.CharacteristicType.HPDrain:
                 GameManager.instance.playerData.ChaHPDrain += data.baseDamage;
-                level++;
-                textLevel.text = "Lv." + level;
+                GameManager.instance.playerData.ChaHPDrainLevel++;
+                textLevel.text = "Lv." + GameManager.instance.playerData.ChaHPDrainLevel;
                 textNow.text = string.Format("{0:F1}%", GameManager.instance.playerData.ChaHPDrain * 100);
                 GameManager.instance.playerData.traitspoints--;
                 break;
@@ -84,10 +104,7 @@ public class Characteristic : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()

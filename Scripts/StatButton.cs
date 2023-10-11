@@ -7,9 +7,8 @@ public class StatButton : MonoBehaviour
 {
     public GameObject[] StatData;
 
-    int PrevGoldCost = 0;
+
     int NextGoldCost = 1;
-    int temp = 0;
 
     Text UpgradeText;
     Text CostText;
@@ -34,11 +33,10 @@ public class StatButton : MonoBehaviour
 
         GameManager.instance.playerData.gold -= NextGoldCost;
 
-        temp = PrevGoldCost + NextGoldCost;
-        PrevGoldCost = NextGoldCost;
-        NextGoldCost = temp;
+        NextGoldCost += 3;
 
-        
+
+
         int ran = Random.Range(0, StatData.Length);
         StatData[ran].GetComponent<Stat>().ClickUpdate();
 

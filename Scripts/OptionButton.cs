@@ -35,6 +35,7 @@ public class OptionButton : MonoBehaviour
     {
         BGMColor();
         SFXColor();
+        X2Color();
     }
 
     void BGMColor()
@@ -64,16 +65,25 @@ public class OptionButton : MonoBehaviour
             sfx.color = sfxcolor;
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
 
+    void X2Color()
+    {
+        
+        if (!GameManager.instance.isX2)
+        {
+            speedButtoncolor.a = 0.5f;
+            speedButton.color = speedButtoncolor;
+        }
+        else
+        {
+            speedButtoncolor.a = 1f;
+            speedButton.color = speedButtoncolor;
+        }
     }
 
     public void Show()
     {
         rect.localScale = Vector3.one;
-
         if (ClickCount != 0)
         {
             Hide();
@@ -89,7 +99,11 @@ public class OptionButton : MonoBehaviour
         ClickCount = 0;
         rect.localScale = Vector3.zero;
     }
+    // Start is called before the first frame update
+    void Start()
+    {
 
+    }
 
     // Update is called once per frame
     void Update()
