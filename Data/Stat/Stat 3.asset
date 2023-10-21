@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statType: 3
   statId: 3
-  statName: "\uD604\uC7AC \uCE58\uBA85\uD0C0 \uD655\uB960 : {0}"
-  statLevel: 0
-  statDesc: "\uB2E4\uC74C \uC99D\uAC00\uB7C9 : {0}"
+  statName: "\uD604\uC7AC \uCE58\uBA85\uD0C0 \uD655\uB960 : {0:F2}"
+  statDesc: "\uB2E4\uC74C \uC99D\uAC00\uB7C9 : {0:F2}"
   statIcon: {fileID: 0}
   baseDamage: 0.01
   proijectile: {fileID: 0}

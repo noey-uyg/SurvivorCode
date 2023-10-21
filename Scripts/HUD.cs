@@ -43,13 +43,13 @@ public class HUD : MonoBehaviour
                 mySlider.value = curHealth / maxHealth;
                 break;
             case InfoType.gold:
-                myText.text = string.Format("골드 : {0:F0}", GameManager.instance.playerData.gold);
+                myText.text = string.Format("골드 : {0:N0}", GameManager.instance.playerData.gold);
                 break;
             case InfoType.bosspoint:
-                myText.text = string.Format("보스재화 : {0:F0}", GameManager.instance.playerData.bosspoint);
+                myText.text = string.Format("보스재화 : {0:N0}", GameManager.instance.playerData.bosspoint);
                 break;
             case InfoType.traitspoints:
-                myText.text = string.Format("특성포인트 : {0:F0}", GameManager.instance.playerData.traitspoints);
+                myText.text = string.Format("특성포인트 : {0:N0}", GameManager.instance.playerData.traitspoints);
                 break;
         }
     }

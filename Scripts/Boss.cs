@@ -107,6 +107,8 @@ public class Boss : MonoBehaviour
             GameManager.instance.GetExp();
             GameManager.instance.GetGold();
             GameManager.instance.GetBossPoint();
+
+            SoundManager.instance.PlaySfx(SoundManager.Sfx.EnemyKill);
         }
     }
 

@@ -29,20 +29,6 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public void Time_2x()
-    {
-        if (isX2)
-        {
-            isX2 = false;
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            isX2 = true;
-            Time.timeScale = 2f;
-        }
-    }
-
     public void GameOver()
     {
         GameOverLossGold();
@@ -70,13 +56,13 @@ public class GameManager : MonoBehaviour
         uiResult.SetActive(true);
 
         Stop();
+        Time.timeScale = 0f;
         SoundManager.instance.PlayBgm(false);
         SoundManager.instance.PlaySfx(SoundManager.Sfx.GameOver);
     }
 
     private void Start()
     {
-        
         playerData.health = playerData.maxHealth;
         isLive = true;
         SoundManager.instance.PlayBgm(true);
@@ -137,10 +123,28 @@ public class GameManager : MonoBehaviour
         playerData.bosspoint += 10 + (playerData.kill * 5) + playerData.Wave;
     }
 
+    public void Time_2x()
+    {
+        if (!isLive) return;
+
+        SoundManager.instance.PlaySfx(SoundManager.Sfx.Click);
+
+        if (isX2)
+        {
+            isX2 = false;
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            isX2 = true;
+            Time.timeScale = 2f;
+        }
+    }
+
     public void Stop()
     {
         isLive = false;
-        Time.timeScale = 0f;
+        Time.timeScale = 0.1f;
     }
 
     public void Resume()
@@ -155,7 +159,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
-    
+
     public void Drain(float hitDamage)
     {
         playerData.health += (hitDamage * playerData.ChaHPDrain);
@@ -163,7 +167,7 @@ public class GameManager : MonoBehaviour
     }
 
     [ContextMenu("To Json Data")]
-    void SavePlayerDataToJson()
+    public void SavePlayerDataToJson()
     {
         string jsonData = JsonUtility.ToJson(playerData, true);
         //string path = Path.Combine(Application.dataPath + "/playerData.json");
@@ -173,7 +177,7 @@ public class GameManager : MonoBehaviour
     }
 
     [ContextMenu("From Json Data")]
-    void LoadPlayerDataToJson()
+    public void LoadPlayerDataToJson()
     {
         //string path = Path.Combine(Application.dataPath + "/playerData.json");
         string path = Path.Combine(Application.persistentDataPath + "/playerData.json");
@@ -188,8 +192,8 @@ public class GameManager : MonoBehaviour
             playerData = new PlayerData();
             Debug.Log("파일생성 완료");
         }
-        
     }
+
 }
 
 public class PlayerData

@@ -30,7 +30,7 @@ public class PurchaseClick: MonoBehaviour
     {
         Next();
         rect.localScale = Vector3.one;
-
+        GameManager.instance.Stop();
         if (ClickCount != 0)
         {
             Hide();
@@ -46,6 +46,7 @@ public class PurchaseClick: MonoBehaviour
     {
         ClickCount = 0;
         rect.localScale = Vector3.zero;
+        GameManager.instance.Resume();
     }
 
     public void Select(int index)

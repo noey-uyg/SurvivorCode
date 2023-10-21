@@ -8,25 +8,20 @@ public class OptionButton : MonoBehaviour
     RectTransform rect;
     int ClickCount = 0;
 
-    Color speedButtoncolor;
     Color bgmcolor;
     Color sfxcolor;
 
-    Image speedButton;
     Text bgm;
     Text sfx;
 
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
-        speedButton = GetComponentsInChildren<Image>()[1];
-
 
         Text[] texts = GetComponentsInChildren<Text>();
         bgm = texts[1];
         sfx = texts[2];
 
-        speedButtoncolor = speedButton.color;
         bgmcolor = bgm.color;
         sfxcolor = sfx.color;
     }
@@ -35,7 +30,6 @@ public class OptionButton : MonoBehaviour
     {
         BGMColor();
         SFXColor();
-        X2Color();
     }
 
     void BGMColor()
@@ -66,24 +60,12 @@ public class OptionButton : MonoBehaviour
         }
     }
 
-    void X2Color()
-    {
-        
-        if (!GameManager.instance.isX2)
-        {
-            speedButtoncolor.a = 0.5f;
-            speedButton.color = speedButtoncolor;
-        }
-        else
-        {
-            speedButtoncolor.a = 1f;
-            speedButton.color = speedButtoncolor;
-        }
-    }
 
     public void Show()
     {
+        SoundManager.instance.PlaySfx(SoundManager.Sfx.Click);
         rect.localScale = Vector3.one;
+        GameManager.instance.Stop();
         if (ClickCount != 0)
         {
             Hide();
@@ -98,6 +80,7 @@ public class OptionButton : MonoBehaviour
     {
         ClickCount = 0;
         rect.localScale = Vector3.zero;
+        GameManager.instance.Resume();
     }
     // Start is called before the first frame update
     void Start()
