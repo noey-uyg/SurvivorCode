@@ -19,6 +19,6 @@ public class ChangeScene : MonoBehaviour
     public void GameStart()
     {
         SoundManager.instance.PlaySfx(SoundManager.Sfx.Click);
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("LoadingScene");
     }
 }
