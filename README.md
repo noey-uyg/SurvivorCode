@@ -1,6 +1,5 @@
 # Unity&C#으로 구현한 뱀서류 2D게임
 * 개발인원 - 위규연
-* 코드는 scripts 폴더에 있습니다.
 
 # 비동기 씬 전환
 <img width = "20%" src = "https://github.com/noey-uyg/SurvivorCode/assets/105009308/675ac750-890c-4117-963e-377145144809"/>
